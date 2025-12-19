@@ -120,57 +120,63 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-black/98 pt-20 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[60] bg-black flex flex-col justify-center items-center lg:hidden"
           >
-            <div className="container mx-auto px-4 py-8">
-              <div className="flex flex-col gap-6">
-                {navLinks.map((link, index) => (
-                  <motion.button
-                    key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-white text-2xl font-serif text-left hover:text-amber-400 transition-colors"
-                  >
-                    {link.name}
-                  </motion.button>
-                ))}
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors p-2"
+            >
+              <X className="w-8 h-8" />
+            </button>
+
+            <div className="flex flex-col items-center gap-6">
+              {navLinks.map((link, index) => (
+                <motion.button
+                  key={link.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + index * 0.1 }}
+                  onClick={() => scrollToSection(link.href)}
+                  className="font-serif text-3xl text-white hover:text-amber-500 transition-colors tracking-wider"
+                >
+                  {link.name}
+                </motion.button>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mt-12 flex flex-col items-center gap-8"
+            >
+              <div className="w-16 h-[1px] bg-white/10" />
+
+              <div className="flex gap-8">
+                <a href="https://www.instagram.com/elchicanoficial" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-amber-500 transition-colors">
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <a href="https://www.facebook.com/elchicanoficial" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-amber-500 transition-colors">
+                  <Facebook className="w-6 h-6" />
+                </a>
               </div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="mt-12 pt-8 border-t border-neutral-800"
+              <a
+                href={siteData.social.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 border border-white/20 text-white text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300"
               >
-                <a
-                  href="https://api.whatsapp.com/send?phone=5548999326792&text=Olá, gostaria de fazer uma reserva"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full py-4 bg-green-600 text-white text-center text-sm tracking-[0.2em] uppercase shadow-[0_0_20px_rgba(22,163,74,0.2)]"
-                >
-                  Fazer Reserva
-                </a>
-
-                <div className="flex justify-center gap-6 mt-8">
-                  <a href="#" className="text-neutral-400 hover:text-amber-400 transition-colors">
-                    <Instagram className="w-6 h-6" />
-                  </a>
-                  <a href="#" className="text-neutral-400 hover:text-amber-400 transition-colors">
-                    <Facebook className="w-6 h-6" />
-                  </a>
-                </div>
-              </motion.div>
-            </div>
+                Fazer Reserva
+              </a>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
