@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Instagram, Facebook } from 'lucide-react';
+import { siteData } from '@/lib/siteData';
 
 const navLinks = [
   { name: 'Início', href: '#top' },
