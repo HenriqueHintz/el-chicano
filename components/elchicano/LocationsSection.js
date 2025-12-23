@@ -3,7 +3,8 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { MapPin, Phone, Clock, MessageCircle, Navigation, Wifi, Beer, Wine, Dog, Accessibility, Car, UtensilsCrossed, Users } from 'lucide-react';
+import { MapPin, Phone, Clock, MessageCircle, Navigation, Wifi, Beer, Wine, Dog, Accessibility, Car, UtensilsCrossed, Users, Smartphone } from 'lucide-react';
+import DigitalPresenceModal from './DigitalPresenceModal';
 
 const locations = [
   {
@@ -21,7 +22,7 @@ const locations = [
       'Seg: Fechado'
     ],
     googleMaps: 'https://www.google.com/maps/place/El+Chicano+Pocket/@-27.5872762,-48.5433644,15z/data=!4m6!3m5!1s0x952739d6ba408363:0x34ef4b90b468f567!8m2!3d-27.5872762!4d-48.5433644!16s%2Fg%2F11sdy_1gy_',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070',
+    image: '/images/locations/floripa-interior.jpg',
     features: [
       { icon: Accessibility, label: 'Acessibilidade completa' },
       { icon: Wifi, label: 'Wi-Fi gratuito' },
@@ -76,7 +77,7 @@ const locations = [
   }
 ];
 
-function LocationCard({ location, isActive, onClick, index }) {
+function LocationCard({ location, isActive, onClick, onOpenPresence, index }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -187,6 +188,18 @@ function LocationCard({ location, isActive, onClick, index }) {
             Rotas
           </a>
         </div>
+
+        {/* Digital Presence Action */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpenPresence();
+          }}
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 mt-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white text-xs tracking-wider uppercase transition-all shadow-lg shadow-orange-600/20"
+        >
+          <MapPin className="w-4 h-4" />
+          Plataformas Digitais
+        </button>
       </div>
     </motion.div>
   );
@@ -194,6 +207,7 @@ function LocationCard({ location, isActive, onClick, index }) {
 
 export default function LocationsSection() {
   const [activeLocation, setActiveLocation] = useState(locations[0]);
+  const [isPresenceOpen, setIsPresenceOpen] = useState(false);
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true });
 
@@ -225,12 +239,16 @@ export default function LocationsSection() {
               location={location}
               isActive={activeLocation.id === location.id}
               onClick={() => setActiveLocation(location)}
+              onOpenPresence={() => setIsPresenceOpen(true)}
               index={index}
             />
           ))}
         </div>
 
-
+        <DigitalPresenceModal
+          isOpen={isPresenceOpen}
+          onClose={() => setIsPresenceOpen(false)}
+        />
       </div>
     </section>
   );

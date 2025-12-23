@@ -1,7 +1,12 @@
-import React from 'react';
-import { Instagram, Facebook, MapPin, Phone, Clock, Mail } from 'lucide-react';
+'use client';
+
+import React, { useState } from 'react';
+import { Instagram, Facebook, MapPin, Phone, Clock, Mail, X, Globe, ExternalLink, Smartphone, ShoppingBag } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import DigitalPresenceModal from './DigitalPresenceModal';
 
 export default function Footer() {
+  const [isDigitalPresenceOpen, setIsDigitalPresenceOpen] = useState(false);
   return (
     <footer className="bg-black pt-20 pb-8">
       <div className="container mx-auto px-4 md:px-8">
@@ -15,32 +20,15 @@ export default function Footer() {
               Autêntica culinária mexicana com alma, arte e sabor. Uma experiência gastronômica única.
             </p>
 
-            {/* Social */}
+            {/* Digital Presence Button */}
             <div className="flex gap-4 mt-6">
-              <a
-                href="https://linktr.ee/elchicanoficial"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs tracking-wider uppercase transition-all duration-300 flex items-center gap-2"
+              <button
+                onClick={() => setIsDigitalPresenceOpen(true)}
+                className="px-5 py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white text-xs tracking-[0.15em] uppercase transition-all duration-300 shadow-[0_0_15px_rgba(251,146,60,0.3)] hover:shadow-[0_0_20px_rgba(251,146,60,0.5)] flex items-center gap-2"
               >
-                🔗 Links
-              </a>
-              <a
-                href="https://www.instagram.com/elchicanoficial"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center bg-neutral-900 hover:bg-amber-600 text-neutral-400 hover:text-white transition-all duration-300"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.facebook.com/elchicanoficial"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center bg-neutral-900 hover:bg-amber-600 text-neutral-400 hover:text-white transition-all duration-300"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
+                <MapPin className="w-4 h-4" />
+                <span>Plataformas Digitais</span>
+              </button>
             </div>
           </div>
 
@@ -147,6 +135,12 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Digital Presence Modal */}
+      <DigitalPresenceModal
+        isOpen={isDigitalPresenceOpen}
+        onClose={() => setIsDigitalPresenceOpen(false)}
+      />
     </footer>
   );
 }

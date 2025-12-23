@@ -27,8 +27,8 @@ export default function HeroSection() {
         className="absolute inset-0 z-0"
       >
         <Image
-          src="https://images.unsplash.com/photo-1653069196998-adddc6ad8e18?q=80&w=2070"
-          alt="El Chicano Atmosphere"
+          src="https://images.unsplash.com/photo-1514516322520-572a73f4aa9e?q=80&w=2070"
+          alt="Restaurante mexicano El Chicano Pocket em Florianópolis - Ambiente acolhedor com decoração mexicana autêntica, mesas e atmosfera vibrante para experiência gastronômica única"
           fill
           priority
           quality={90}
@@ -98,7 +98,7 @@ export default function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
+          transition={{ duration: 1, delay: 1.8 }}
           className="text-white/70 text-center text-lg md:text-xl max-w-2xl leading-relaxed italic font-light"
         >
           "{siteData.fullTagline}"
@@ -108,14 +108,15 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
+          transition={{ duration: 0.8, delay: 2.1 }}
           className="mt-12 flex flex-col sm:flex-row gap-6"
         >
           <motion.a
             href="#menu"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group relative px-10 py-4 bg-orange-600 overflow-hidden"
+            className="group relative px-10 py-4 bg-orange-600 overflow-hidden focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-lg"
+            aria-label="Explorar nosso cardápio completo"
           >
             <span className="relative z-10 text-white text-sm tracking-[0.2em] uppercase font-bold">
               Explorar Menu
@@ -132,11 +133,12 @@ export default function HeroSection() {
           </motion.a>
 
           <motion.a
-            href={siteData.social.whatsapp}
+            href="https://api.whatsapp.com/send?phone=5548999326792&text=Ol%C3%A1!%20Vi%20o%20site%20e%20gostaria%20de%20fazer%20uma%20reserva%20no%20El%20Chicano%20Pocket"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ borderColor: "#16A34A" }}
-            className="px-10 py-4 border border-white/20 text-white text-sm tracking-[0.2em] uppercase transition-all duration-300 backdrop-blur-md hover:shadow-[0_0_20px_rgba(22,163,74,0.3)] hover:text-green-500"
+            className="px-10 py-4 border border-white/20 text-white text-sm tracking-[0.2em] uppercase transition-all duration-300 backdrop-blur-md hover:shadow-[0_0_20px_rgba(22,163,74,0.3)] hover:text-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black rounded-lg"
+            aria-label="Fazer reserva via WhatsApp (abre em nova aba)"
           >
             Reservas
           </motion.a>

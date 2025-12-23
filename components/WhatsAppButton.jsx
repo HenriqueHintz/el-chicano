@@ -6,15 +6,15 @@ import { motion } from "framer-motion";
 export default function WhatsAppButton() {
     return (
         <motion.a
-            href="https://api.whatsapp.com/send?phone=5548999326792&text=Ol%C3%A1,%20gostaria%20de%20fazer%20uma%20reserva"
+            href="https://api.whatsapp.com/send?phone=5548999326792&text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20(via%20bot%C3%A3o%20flutuante)"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden lg:flex fixed bottom-6 left-6 z-50 h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg hover:bg-[#128C7E] transition-colors duration-300"
+            className="hidden lg:flex fixed bottom-6 left-6 z-50 h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg hover:bg-[#128C7E] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            aria-label="Contact us on WhatsApp"
+            aria-label="Fale conosco via WhatsApp para fazer reservas (abre em nova aba)"
         >
             <svg
                 viewBox="0 0 24 24"

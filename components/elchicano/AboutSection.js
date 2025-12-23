@@ -60,18 +60,22 @@ export default function AboutSection() {
 
             <div className="mt-8 space-y-6 text-neutral-400 leading-relaxed">
               <p>
-                Nascido da paixão pela autêntica culinária mexicana e pela arte de receber bem, 
-                o <strong className="text-white">El Chicano Pocket</strong> é um refúgio gastronômico 
-                no coração da cidade.
+                🎯 <strong className="text-white">Por que escolher o El Chicano Pocket?</strong><br />
+                Não somos apenas um restaurante — somos <strong className="text-amber-400">artesãos da experiência mexicana</strong>.
+                Cada detalhe, desde a seleção dos ingredientes até a decoração do ambiente, foi pensado
+                para transportar você diretamente para as ruas vibrantes do México.
               </p>
               <p>
-                Cada prato conta uma história, cada drink celebra a tradição, e cada noite é uma 
-                celebração da cultura mexicana em sua forma mais vibrante e contemporânea.
+                🌶️ <strong className="text-orange-400">Sabores autênticos que conquistam</strong><br />
+                Nossos pratos são preparados com receitas tradicionais mexicanas, adaptadas com
+                ingredientes frescos e locais. <strong className="text-white">Não copiamos, recriamos</strong>
+                a magia da culinária mexicana com o toque especial do El Chicano.
               </p>
               <p>
-                Nosso espaço foi pensado para criar conexões — entre sabores, pessoas e momentos 
-                que ficam na memória. Seja para um jantar íntimo ou uma celebração especial, 
-                aqui você encontra a essência do México.
+                🎉 <strong className="text-green-400">Momentos inesquecíveis garantidos</strong><br />
+                Já imaginou celebrar seu aniversário, encontro especial ou evento corporativo em um
+                ambiente que combina <strong className="text-white">comida excepcional, drinks artesanais e música ao vivo</strong>?
+                Aqui, cada visita se transforma em uma história para contar.
               </p>
             </div>
 

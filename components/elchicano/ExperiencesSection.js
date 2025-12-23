@@ -74,10 +74,6 @@ function ExperienceCard({ experience, index }) {
             {experience.description}
           </p>
 
-          <div className="mt-4 flex items-center gap-2 text-amber-300 text-sm tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span>Saiba mais</span>
-            <span className="transform group-hover:translate-x-2 transition-transform">→</span>
-          </div>
         </div>
       </div>
     </motion.div>

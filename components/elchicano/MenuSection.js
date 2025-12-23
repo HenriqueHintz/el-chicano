@@ -1,17 +1,31 @@
 'use client';
 
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import Image from 'next/image';
-import { Search, Utensils, Info } from 'lucide-react';
+import { Search, Utensils, X } from 'lucide-react';
 import { menuCategories, menuItems } from '@/lib/siteData';
+import AddToCartButton from '@/components/cart/AddToCartButton';
 
 export default function MenuSection() {
     const [activeCategory, setActiveCategory] = useState(menuCategories[0].id);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedImage, setSelectedImage] = useState(null);
     const ref = useRef(null);
+    const itemsContainerRef = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+    // Close modal on ESC key press
+    useEffect(() => {
+        const handleEsc = (e) => {
+            if (e.key === 'Escape' && selectedImage) {
+                setSelectedImage(null);
+            }
+        };
+        window.addEventListener('keydown', handleEsc);
+        return () => window.removeEventListener('keydown', handleEsc);
+    }, [selectedImage]);
 
     const filteredItems = useMemo(() => {
         const items = menuItems[activeCategory] || [];
@@ -68,100 +82,145 @@ export default function MenuSection() {
                                 transition={{ duration: 0.3, delay: index * 0.05 }}
                                 onClick={() => {
                                     setActiveCategory(category.id);
-                                    setSearchTerm('');
+                                    if (itemsContainerRef.current) {
+                                        const yOffset = -120; // Ajustado para não esconder o topo dos cards
+                                        const y = itemsContainerRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                                        window.scrollTo({ top: y, behavior: 'smooth' });
+                                    }
                                 }}
-                                className={`px-5 py-2.5 rounded-full text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 border ${activeCategory === category.id
-                                    ? 'bg-orange-600 border-orange-600 text-white shadow-[0_0_20px_rgba(255,140,0,0.4)]'
-                                    : 'bg-white/5 border-white/10 text-white/60 hover:border-white/30 hover:text-white'
-                                    }`}
+                                className={`
+                                    relative px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 border
+                                    ${activeCategory === category.id
+                                        ? 'bg-amber-600 border-amber-600 text-white shadow-[0_0_20px_rgba(217,119,6,0.3)] scale-105'
+                                        : 'bg-white/5 border-white/10 text-white/60 hover:border-white/30 hover:text-white hover:bg-white/10'
+                                    }
+                                `}
                             >
-                                <span className="mr-2">{category.icon}</span>
-                                {category.name}
+                                <span className="relative z-10 flex items-center gap-2">
+                                    {category.name}
+                                </span>
                             </motion.button>
                         ))}
                     </div>
                 </div>
 
                 {/* Menu Items Grid */}
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={activeCategory + searchTerm}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.4 }}
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    >
-                        {filteredItems.length > 0 ? (
-                            filteredItems.map((item, index) => (
-                                <motion.div
-                                    key={item.name}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="group relative bg-[#0A0A0A] border border-white/5 rounded-2xl overflow-hidden hover:border-orange-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-600/10"
-                                >
-                                    {/* Item Image */}
-                                    {item.image && (
-                                        <div className="relative h-56 overflow-hidden">
-                                            <Image
-                                                src={item.image}
-                                                alt={item.name}
-                                                fill
-                                                quality={85}
-                                                priority={index < 2}
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                                className="object-cover group-hover:scale-110 transition-transform duration-700"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-60"></div>
-
-                                            {/* Price Badge */}
-                                            <div className="absolute top-4 right-4 bg-orange-600 text-white px-4 py-2 rounded-full font-black text-sm shadow-xl">
-                                                R$ {item.price}
+                <div ref={itemsContainerRef} className="scroll-mt-32">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeCategory + searchTerm}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.4 }}
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        >
+                            {filteredItems.length > 0 ? (
+                                filteredItems.map((item, index) => (
+                                    <motion.div
+                                        key={item.name}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        className="group relative bg-[#0A0A0A] border border-white/5 rounded-2xl overflow-hidden hover:border-orange-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-600/10 flex flex-col"
+                                    >
+                                        {/* Item Image */}
+                                        {item.image && (
+                                            <div
+                                                className="relative h-56 overflow-hidden flex-shrink-0 cursor-pointer"
+                                                onClick={() => setSelectedImage({ src: item.image, alt: item.name })}
+                                            >
+                                                <Image
+                                                    src={item.image}
+                                                    alt={item.name}
+                                                    fill
+                                                    quality={85}
+                                                    priority={index < 2}
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                                             </div>
-
-                                            {item.trending && (
-                                                <div className="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full font-black text-[10px] uppercase tracking-tighter animate-bounce shadow-[0_0_10px_rgba(22,163,74,0.5)]">
-                                                    Popular 🔥
-                                                </div>
-                                            )}
-                                        </div>
-                                    )}
-
-                                    {/* Content */}
-                                    <div className="p-8">
-                                        <div className="flex justify-between items-start mb-3">
-                                            <h3 className="font-serif text-2xl text-white group-hover:text-orange-500 transition-colors">
-                                                {item.name}
-                                            </h3>
-                                        </div>
-
-                                        {item.description && (
-                                            <p className="text-white/40 text-sm leading-relaxed mb-6 font-light line-clamp-3">
-                                                {item.description}
-                                            </p>
                                         )}
 
-                                        <div className="flex items-center gap-4 pt-6 border-t border-white/5">
-                                            <button className="flex-1 bg-white/5 hover:bg-green-600 text-white text-[10px] uppercase tracking-[0.2em] font-black py-3 rounded-lg transition-all border border-white/10 hover:border-green-600">
-                                                Pedir Agora
-                                            </button>
-                                            <button className="p-3 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-all text-white/40 hover:text-white">
-                                                <Info className="w-4 h-4" />
-                                            </button>
+                                        <div className="p-6 md:p-8 flex flex-col flex-grow relative">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <h3 className="text-xl md:text-2xl font-serif font-bold text-white group-hover:text-amber-500 transition-colors duration-300">
+                                                    {item.name}
+                                                </h3>
+                                                <span className="text-amber-500 font-bold text-lg md:text-xl whitespace-nowrap ml-4">
+                                                    R$ {item.price}
+                                                </span>
+                                            </div>
+
+                                            <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-6 font-light line-clamp-3 group-hover:line-clamp-none transition-all duration-300 flex-grow">
+                                                {item.description}
+                                            </p>
+
+                                            <div className="pt-4 mt-auto border-t border-white/10 flex justify-end">
+                                                <AddToCartButton
+                                                    item={{
+                                                        id: `${activeCategory}-${index}`,
+                                                        name: item.name,
+                                                        price: item.price,
+                                                        image: item.image || '/images/logo.png', // Fallback
+                                                        category: activeCategory
+                                                    }}
+                                                    className="w-full md:w-auto"
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                </motion.div>
-                            ))
-                        ) : (
-                            <div className="col-span-full py-20 text-center">
-                                <Utensils className="w-12 h-12 text-white/10 mx-auto mb-4" />
-                                <p className="text-white/40 font-light italic">Nenhum item encontrado para sua busca.</p>
-                            </div>
-                        )}
-                    </motion.div>
-                </AnimatePresence>
+                                    </motion.div>
+                                ))
+                            ) : (
+                                <div className="col-span-full py-20 text-center">
+                                    <Utensils className="w-12 h-12 text-white/10 mx-auto mb-4" />
+                                    <p className="text-white/40 font-light italic">Nenhum item encontrado para sua busca.</p>
+                                </div>
+                            )}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
             </div>
+
+            {/* Lightbox Modal */}
+            <AnimatePresence>
+                {selectedImage && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 backdrop-blur-md"
+                        onClick={() => setSelectedImage(null)}
+                    >
+                        <button
+                            className="absolute top-6 right-6 text-white/70 hover:text-orange-500 transition-colors z-10"
+                            onClick={() => setSelectedImage(null)}
+                        >
+                            <X className="w-10 h-10" />
+                        </button>
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="relative max-w-5xl max-h-[90vh] w-full"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <Image
+                                src={selectedImage.src}
+                                alt={selectedImage.alt}
+                                width={1200}
+                                height={800}
+                                quality={100}
+                                className="w-full h-full object-contain rounded-lg shadow-2xl shadow-orange-600/10"
+                            />
+                            <div className="absolute -bottom-14 left-0 right-0 text-center">
+                                <h3 className="text-white text-xl font-serif tracking-wide">{selectedImage.alt}</h3>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }
