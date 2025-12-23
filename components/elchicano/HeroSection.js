@@ -21,31 +21,10 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Optimized Background Image with Parallax */}
-      <motion.div
-        style={{ y: y1 }}
-        className="absolute inset-0 z-0"
-      >
-        <Image
-          src="https://images.unsplash.com/photo-1514516322520-572a73f4aa9e?q=80&w=2070"
-          alt="Restaurante mexicano El Chicano Pocket em Florianópolis - Ambiente acolhedor com decoração mexicana autêntica, mesas e atmosfera vibrante para experiência gastronômica única"
-          fill
-          priority
-          quality={90}
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90" />
-      </motion.div>
+      {/* Matte Gray Gradient Background */}
+      <div className="absolute inset-0 z-0 bg-[#121212] bg-gradient-to-b from-neutral-900 via-neutral-950 to-black" />
 
-      {/* Decorative Neon Pattern */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' fill='%23FF8C00' fill-opacity='0.5'/%3E%3C/svg%3E")`,
-            backgroundSize: '40px 40px'
-          }}
-        />
-      </div>
+
 
       {/* Content Area */}
       <motion.div
