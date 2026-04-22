@@ -168,7 +168,7 @@ export default function Navbar() {
             <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={() => setIsDigitalPresenceOpen(true)}
-                className="px-3 sm:px-5 py-2 sm:py-2.5 bg-brand-soft hover:brightness-110 text-[#1A1A1A] text-[10px] sm:text-xs font-bold tracking-[0.1em] sm:tracking-[0.15em] uppercase transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-soft focus:ring-offset-2 focus:ring-offset-brand-base rounded flex items-center gap-1 sm:gap-2"
+                className="px-3 sm:px-5 py-1.5 sm:py-1.5 bg-brand-soft hover:brightness-110 text-[#1A1A1A] text-[11px] sm:text-[13px] font-bold tracking-[0.1em] sm:tracking-[0.15em] uppercase transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-soft focus:ring-offset-2 focus:ring-offset-brand-base rounded flex items-center gap-1 sm:gap-2"
                 aria-label="Ver plataformas digitais"
               >
                 <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
