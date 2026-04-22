@@ -194,7 +194,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[60] bg-[#121212]/98 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center"
             role="dialog"
             aria-modal="true"
             aria-label="Menu de navegação móvel"
