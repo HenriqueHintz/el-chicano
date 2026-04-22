@@ -190,94 +190,37 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[60] bg-[#050505] lg:hidden flex flex-col"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center"
             role="dialog"
             aria-modal="true"
             aria-label="Menu de navegação móvel"
           >
-            {/* Header in Menu */}
-            <div className="flex items-center justify-between px-6 h-20 border-b border-white/5">
-              <div className="flex flex-col">
-                <span className="font-serif text-xl text-white tracking-wide">EL CHICANO</span>
-                <span className="text-brand-accent text-[8px] tracking-[0.4em] uppercase -mt-0.5">Pocket</span>
-              </div>
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 text-white/50 hover:text-white transition-colors"
-                aria-label="Fechar menu"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-
-            {/* Links Section */}
-            <div className="flex-1 flex flex-col justify-center px-10">
-              <nav className="flex flex-col gap-8">
-                {navLinks.map((link, index) => (
-                  <motion.button
-                    key={link.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + index * 0.05 }}
-                    onClick={() => scrollToSection(link.href)}
-                    className="flex flex-col group items-start"
-                  >
-                    <span className="text-white/30 text-[10px] tracking-[0.3em] uppercase font-black mb-1 group-hover:text-brand-accent transition-colors">
-                      0{index + 1}
-                    </span>
-                    <span className="font-serif text-4xl text-white group-hover:text-brand-accent transition-all tracking-tight">
-                      {link.name}
-                    </span>
-                  </motion.button>
-                ))}
-              </nav>
-            </div>
-
-            {/* Bottom Section */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="p-10 border-t border-white/5 bg-white/[0.02]"
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute top-6 right-8 p-2 text-white/50 hover:text-white transition-colors"
+              aria-label="Fechar menu"
             >
-              <div className="flex flex-col gap-8">
-                <div className="flex justify-between items-end">
-                  <div className="flex flex-col gap-4">
-                    <h4 className="text-brand-accent text-[10px] tracking-[0.3em] uppercase font-black">Siga-nos</h4>
-                    <div className="flex gap-6">
-                      <a href="https://instagram.com/elchicanopocket" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-white transition-colors">
-                        <Instagram className="w-5 h-5" />
-                      </a>
-                      <a href="#" className="text-white/50 hover:text-white transition-colors">
-                        <Facebook className="w-5 h-5" />
-                      </a>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      setIsDigitalPresenceOpen(true);
-                    }}
-                    className="text-white text-[10px] tracking-[0.2em] uppercase font-bold border-b border-brand-accent pb-1"
-                  >
-                    Plataformas Digitais
-                  </button>
-                </div>
+              <X className="w-8 h-8" />
+            </button>
 
-                <a
-                  href={siteData.social.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-4 bg-white text-black text-xs font-black uppercase tracking-[0.3em] flex items-center justify-center rounded-xl shadow-xl shadow-white/5"
+            <nav className="flex flex-col items-center gap-10">
+              {navLinks.map((link, index) => (
+                <motion.button
+                  key={link.name}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  onClick={() => scrollToSection(link.href)}
+                  className="font-serif text-4xl text-white hover:text-brand-accent transition-colors tracking-tight"
                 >
-                  Fazer Reserva
-                </a>
-              </div>
-            </motion.div>
+                  {link.name}
+                </motion.button>
+              ))}
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
