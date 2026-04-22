@@ -221,6 +221,22 @@ export default function Navbar() {
                 </motion.button>
               ))}
             </nav>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="absolute bottom-12 w-full px-10"
+            >
+              <a
+                href={siteData.social.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center rounded-full shadow-lg shadow-emerald-600/20 transition-all duration-300"
+              >
+                Fale Conosco
+              </a>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
