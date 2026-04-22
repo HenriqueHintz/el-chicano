@@ -24,9 +24,7 @@ const LocationsSection = dynamic(() => import('@/components/elchicano/LocationsS
     loading: () => <div className="h-screen bg-brand-base" />,
 });
 
-const MobileQuickActions = dynamic(() => import('@/components/elchicano/MobileQuickActions.js'), {
-    ssr: false,
-});
+
 
 const Footer = dynamic(() => import('@/components/elchicano/Footer.js'), {
     loading: () => <div className="min-h-[300px] bg-brand-base" />,
@@ -58,7 +56,7 @@ export default function Home() {
                 </div>
             </main>
 
-            <MobileQuickActions />
+
             <Footer />
         </div>
     );
