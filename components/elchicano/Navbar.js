@@ -90,6 +90,18 @@ export default function Navbar() {
     };
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const scrollToSection = (href) => {
     setIsMobileMenuOpen(false);
     const element = document.querySelector(href);
@@ -194,7 +206,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[60] bg-[#121212]/98 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[60] bg-zinc-900/98 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center"
             role="dialog"
             aria-modal="true"
             aria-label="Menu de navegação móvel"
