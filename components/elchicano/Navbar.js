@@ -167,7 +167,7 @@ export default function Navbar() {
                 href="https://api.whatsapp.com/send?phone=5548999326792&text=Olá, gostaria de fazer uma reserva"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 sm:px-6 py-2 sm:py-2.5 bg-brand-accent/45 border border-brand-accent/30 text-brand-soft text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] uppercase transition-all duration-300 hover:bg-brand-accent/55 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-base rounded flex items-center justify-center"
+                className="px-4 sm:px-6 py-2 sm:py-2.5 bg-brand-accent/45 border border-brand-accent/30 text-brand-soft text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] uppercase transition-all duration-300 hover:bg-brand-accent/55 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-base rounded hidden sm:flex items-center justify-center"
                 aria-label="Fazer reserva via WhatsApp (abre em nova aba)"
               >
                 Reservar

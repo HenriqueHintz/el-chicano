@@ -37,7 +37,7 @@ export default function ScrollToTopButton() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-[92px] right-6 z-50 h-14 w-14 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-2xl hover:bg-white hover:text-black transition-all duration-300 hidden lg:flex"
+          className="fixed bottom-[92px] right-6 z-50 h-14 w-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-2xl hover:bg-white hover:text-black transition-all duration-300"
           aria-label="Voltar ao topo"
         >
           <ChevronUp className="w-6 h-6" />
