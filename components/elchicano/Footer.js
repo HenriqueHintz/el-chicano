@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
 
           {/* Minimal Links */}
-          <div className="flex flex-col sm:flex-row gap-12 sm:gap-24">
+          <div className="hidden md:flex flex-col sm:flex-row gap-12 sm:gap-24">
             <div>
               <h4 className="text-brand-accent text-[10px] tracking-[0.3em] uppercase font-black mb-6">Links Rápidos</h4>
               <ul className="space-y-3">
