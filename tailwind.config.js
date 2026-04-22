@@ -11,11 +11,18 @@ module.exports = {
         extend: {
             colors: {
                 // Brand Colors - Mexican Theme
+                brand: {
+                    base: '#3F4045',
+                    accent: '#F97316',
+                    light: '#D1D5DB',
+                    soft: '#F5F5F5',
+                },
                 'mexican': {
-                    orange: '#FF8C00',
+                    orange: '#F18701',
                     green: '#006847',
                     gold: '#D4A853',
                     red: '#C8102E',
+                    pattern: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30z' fill='%23F97316' fill-opacity='0.5'/%3E%3C/svg%3E")`,
                 },
                 amber: {
                     50: '#fffbeb',
@@ -72,8 +79,9 @@ module.exports = {
                 '4xl': '2rem',
             },
             boxShadow: {
-                'glow-orange': '0 0 20px rgba(255, 140, 0, 0.3)',
+                'glow-orange': '0 0 20px rgba(249, 115, 22, 0.4)',
                 'glow-green': '0 0 20px rgba(0, 104, 71, 0.3)',
+                'glow-accent': '0 0 20px rgba(249, 115, 22, 0.25)',
             },
         },
     },

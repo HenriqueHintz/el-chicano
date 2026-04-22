@@ -9,7 +9,7 @@ export default function WhatsAppButton() {
             href="https://api.whatsapp.com/send?phone=5548999326792&text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20(via%20bot%C3%A3o%20flutuante)"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden lg:flex fixed bottom-6 left-6 z-50 h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg hover:bg-[#128C7E] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black"
+            className="hidden lg:flex fixed bottom-6 right-6 z-50 h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg hover:bg-[#128C7E] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black shadow-green-600/20"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             whileHover={{ scale: 1.1 }}

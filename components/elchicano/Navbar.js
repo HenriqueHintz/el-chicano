@@ -9,7 +9,6 @@ import { siteData } from '@/lib/siteData';
 const navLinks = [
   { name: 'Início', href: '#top' },
   { name: 'Sobre', href: '#about' },
-  { name: 'Experiências', href: '#experiences' },
   { name: 'Menu', href: '#menu' },
   { name: 'Unidades', href: '#locations' },
   { name: 'Contato', href: '#contact' },
@@ -110,7 +109,7 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? 'bg-black/95 backdrop-blur-md shadow-lg'
+          ? 'bg-brand-base/95 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
           }`}
       >
@@ -119,11 +118,11 @@ export default function Navbar() {
             {/* Logo */}
             <button
               onClick={() => scrollToSection('#top')}
-              className="flex flex-col focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-lg p-2 -m-2"
+              className="flex flex-col focus:outline-none"
               aria-label="Ir para o início da página El Chicano Pocket"
             >
-              <span className="font-serif text-2xl text-white tracking-wide">EL CHICANO</span>
-              <span className="text-amber-400 text-[10px] tracking-[0.4em] uppercase -mt-1">Pocket</span>
+              <span className="font-serif text-2xl text-brand-soft tracking-wide">EL CHICANO</span>
+              <span className="text-brand-accent text-[10px] tracking-[0.4em] uppercase -mt-1">Pocket</span>
             </button>
 
             {/* Desktop Navigation */}
@@ -132,19 +131,19 @@ export default function Navbar() {
                 <button
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  className="relative text-xs tracking-[0.2em] uppercase transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded px-2 py-1 group"
+                  className="relative text-xs tracking-[0.2em] uppercase transition-all duration-300 focus:outline-none group"
                   aria-label={`Navegar para ${link.name}`}
                   aria-current={activeSection === link.href ? 'page' : undefined}
                 >
                   <span className={`transition-colors duration-300 ${activeSection === link.href
-                    ? 'text-amber-400 font-bold'
-                    : 'text-white/70 group-hover:text-amber-400'
+                    ? 'text-brand-soft font-bold'
+                    : 'text-brand-light group-hover:text-brand-soft'
                     }`}>
                     {link.name}
                   </span>
                   {/* Animated underline */}
                   <span
-                    className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-amber-400 to-orange-500 transition-all duration-300 ease-out ${activeSection === link.href
+                    className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-brand-accent transition-all duration-300 ease-out ${activeSection === link.href
                       ? 'w-full opacity-100'
                       : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'
                       }`}
@@ -157,18 +156,18 @@ export default function Navbar() {
             <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={() => setIsDigitalPresenceOpen(true)}
-                className="px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] uppercase transition-all duration-300 shadow-[0_0_15px_rgba(251,146,60,0.3)] hover:shadow-[0_0_20px_rgba(251,146,60,0.5)] focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded flex items-center gap-1 sm:gap-2"
+                className="px-3 sm:px-5 py-2 sm:py-2.5 bg-brand-soft hover:brightness-110 text-[#1A1A1A] text-[10px] sm:text-xs font-bold tracking-[0.1em] sm:tracking-[0.15em] uppercase transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-soft focus:ring-offset-2 focus:ring-offset-brand-base rounded flex items-center gap-1 sm:gap-2"
                 aria-label="Ver plataformas digitais"
               >
                 <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="hidden xs:inline">Plataformas Digitais</span>
-                <span className="xs:hidden">Digitais</span>
+                <span className="hidden xs:inline">Links</span>
+                <span className="xs:hidden">Links</span>
               </button>
               <a
                 href="https://api.whatsapp.com/send?phone=5548999326792&text=Olá, gostaria de fazer uma reserva"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 sm:px-6 py-2 sm:py-2.5 bg-green-600 hover:bg-green-700 text-white text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] uppercase transition-all duration-300 shadow-[0_0_15px_rgba(22,163,74,0.3)] focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black rounded flex items-center justify-center"
+                className="px-4 sm:px-6 py-2 sm:py-2.5 bg-brand-accent/45 border border-brand-accent/30 text-brand-soft text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] uppercase transition-all duration-300 hover:bg-brand-accent/55 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-base rounded flex items-center justify-center"
                 aria-label="Fazer reserva via WhatsApp (abre em nova aba)"
               >
                 Reservar
@@ -178,7 +177,7 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-white p-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded"
+              className="lg:hidden text-brand-soft p-2 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-base rounded"
               aria-label={isMobileMenuOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
               aria-expanded={isMobileMenuOpen}
             >
@@ -195,14 +194,14 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] bg-black flex flex-col justify-center items-center lg:hidden"
+            className="fixed inset-0 z-[60] bg-brand-base flex flex-col justify-center items-center lg:hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Menu de navegação móvel"
           >
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors p-2 focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+              className="absolute top-6 right-6 text-brand-light/50 hover:text-brand-soft transition-colors p-2 focus:outline-none focus:ring-2 focus:ring-brand-accent rounded"
               aria-label="Fechar menu de navegação"
             >
               <X className="w-8 h-8" aria-hidden="true" />
@@ -216,7 +215,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + index * 0.1 }}
                   onClick={() => scrollToSection(link.href)}
-                  className="font-serif text-3xl text-white hover:text-amber-500 transition-colors tracking-wider"
+                  className="font-serif text-3xl text-brand-soft hover:text-brand-accent transition-colors tracking-wider"
                 >
                   {link.name}
                 </motion.button>
@@ -236,16 +235,16 @@ export default function Navbar() {
                     setIsMobileMenuOpen(false);
                     setIsDigitalPresenceOpen(true);
                   }}
-                  className="w-full py-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-2"
+                  className="w-full py-3 bg-brand-soft text-[#1A1A1A] text-xs font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-2"
                 >
                   <MapPin className="w-4 h-4" />
-                  Plataformas Digitais
+                  Links
                 </button>
                 <a
                   href={siteData.social.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 border border-white/20 text-white text-xs uppercase tracking-[0.2em] flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"
+                  className="w-full py-3 border border-brand-light/20 text-brand-soft text-xs uppercase tracking-[0.2em] flex items-center justify-center hover:bg-brand-soft hover:text-brand-base transition-all duration-300"
                 >
                   Fazer Reserva
                 </a>

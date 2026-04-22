@@ -20,68 +20,59 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Matte Gray Gradient Background */}
-      <div className="absolute inset-0 z-0 bg-[#121212] bg-gradient-to-b from-neutral-900 via-neutral-950 to-black" />
+    <section className="relative h-screen w-full overflow-hidden bg-brand-base">
+      {/* Plain Background */}
+      <div className="absolute inset-0 z-0 bg-brand-base" />
 
 
 
       {/* Content Area */}
       <motion.div
         style={{ opacity, scale }}
-        className="relative z-10 h-full flex flex-col items-center justify-center px-4"
+        className="relative z-10 h-full flex flex-col items-start justify-center px-6 md:px-20 lg:px-32 max-w-7xl mx-auto w-full"
       >
-        {/* Tags with Staggered Animation */}
-        <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-8">
-          {['Autêntico', 'Vibrante', 'Premium', 'El Chicano'].map((item, index) => (
-            <motion.span
-              key={item}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              className={`text-xs md:text-sm tracking-[0.3em] uppercase px-3 py-1 border border-white/10 rounded-full bg-black/20 backdrop-blur-sm ${index === 3 ? 'text-orange-500 font-bold border-orange-500/30' : 'text-white/60'
-                }`}
-            >
-              {item}
-            </motion.span>
-          ))}
-        </div>
+        {/* Label Prefix */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex items-center gap-4 mb-4"
+        >
+          <div className="h-[1px] w-12 bg-brand-accent" />
+          <span className="text-brand-accent text-sm tracking-[0.4em] uppercase font-bold">
+            Pocket
+          </span>
+        </motion.div>
 
-        {/* Logo/Title with Reveal Animation */}
-        <div className="text-center mb-6 overflow-hidden">
+        {/* Main Title */}
+        <div className="overflow-hidden mb-8">
           <motion.h1
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-            className="font-serif text-6xl md:text-8xl lg:text-9xl text-white tracking-tight leading-none"
+            className="font-serif text-6xl md:text-8xl lg:text-9xl text-brand-soft tracking-tight leading-[0.9]"
           >
-            EL CHICANO
+            EL <br className="md:hidden" /> CHICANO
           </motion.h1>
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="h-[2px] bg-orange-600 mx-auto mt-2 shadow-[0_0_15px_rgba(255,140,0,0.8)]"
-          />
-          <motion.p
-            initial={{ opacity: 0, tracking: "0.2em" }}
-            animate={{ opacity: 1, tracking: "0.5em" }}
-            transition={{ duration: 1.5, delay: 1 }}
-            className="text-orange-500 text-2xl md:text-3xl uppercase font-light mt-4"
-          >
-            Pocket
-          </motion.p>
         </div>
 
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.8 }}
-          className="text-white/70 text-center text-lg md:text-xl max-w-2xl leading-relaxed italic font-light"
-        >
-          "{siteData.fullTagline}"
-        </motion.p>
+        {/* Tagline with accent line */}
+        <div className="flex gap-6 items-start max-w-2xl">
+          <motion.div 
+            initial={{ height: 0 }}
+            animate={{ height: "100%" }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="w-[2px] bg-brand-accent shadow-glow-accent self-stretch" 
+          />
+          <motion.p
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            className="text-brand-light text-lg md:text-xl leading-relaxed font-light"
+          >
+            {siteData.fullTagline}
+          </motion.p>
+        </div>
 
         {/* CTA Buttons with Hover Effects */}
         <motion.div
@@ -94,20 +85,20 @@ export default function HeroSection() {
             href="#menu"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group relative px-10 py-4 bg-orange-600 overflow-hidden focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-black rounded-lg"
+            className="group relative px-10 py-4 bg-brand-soft overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-soft focus:ring-offset-2 focus:ring-offset-brand-base rounded-lg shadow-lg"
             aria-label="Explorar nosso cardápio completo"
           >
-            <span className="relative z-10 text-white text-sm tracking-[0.2em] uppercase font-bold">
+            <span className="relative z-10 text-[#1A1A1A] text-sm tracking-[0.2em] uppercase font-bold">
               Explorar Menu
             </span>
             <motion.div
-              className="absolute inset-0 bg-white"
+              className="absolute inset-0 bg-brand-accent"
               initial={{ x: "-100%" }}
               whileHover={{ x: 0 }}
               transition={{ duration: 0.3 }}
             />
             <style jsx>{`
-              .group:hover span { color: black; transition: color 0.3s; }
+              .group:hover span { color: #1A1A1A; transition: color 0.3s; }
             `}</style>
           </motion.a>
 
@@ -115,31 +106,16 @@ export default function HeroSection() {
             href="https://api.whatsapp.com/send?phone=5548999326792&text=Ol%C3%A1!%20Vi%20o%20site%20e%20gostaria%20de%20fazer%20uma%20reserva%20no%20El%20Chicano%20Pocket"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ borderColor: "#16A34A" }}
-            className="px-10 py-4 border border-white/20 text-white text-sm tracking-[0.2em] uppercase transition-all duration-300 backdrop-blur-md hover:shadow-[0_0_20px_rgba(22,163,74,0.3)] hover:text-green-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black rounded-lg"
+            whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 92, 0, 0.55)" }}
+            whileTap={{ scale: 0.95 }}
+            className="px-10 py-4 bg-brand-accent/45 backdrop-blur-md border border-brand-accent/30 text-brand-soft text-sm tracking-[0.2em] uppercase font-bold transition-all duration-300 hover:shadow-glow-accent focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-base rounded-lg"
             aria-label="Fazer reserva via WhatsApp (abre em nova aba)"
           >
             Reservas
           </motion.a>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.button
-          onClick={scrollToContent}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/40 hover:text-orange-500 transition-colors cursor-pointer group"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-[10px] tracking-[0.4em] uppercase opacity-0 group-hover:opacity-100 transition-opacity">Scroll</span>
-            <ChevronDown className="w-5 h-5" />
-          </motion.div>
-        </motion.button>
+
       </motion.div>
     </section>
   );

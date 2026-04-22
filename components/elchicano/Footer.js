@@ -1,142 +1,111 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Instagram, Facebook, MapPin, Phone, Clock, Mail, X, Globe, ExternalLink, Smartphone, ShoppingBag } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Instagram, Facebook, ChevronRight, MapPin } from 'lucide-react';
 import DigitalPresenceModal from './DigitalPresenceModal';
 
 export default function Footer() {
   const [isDigitalPresenceOpen, setIsDigitalPresenceOpen] = useState(false);
-  return (
-    <footer className="bg-black pt-20 pb-8">
-      <div className="container mx-auto px-4 md:px-8">
-        {/* Main Footer */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-neutral-800">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <h3 className="font-serif text-3xl text-white">EL CHICANO</h3>
-            <p className="text-amber-400 text-sm tracking-[0.3em] uppercase mt-1">Pocket</p>
-            <p className="mt-6 text-neutral-500 text-sm leading-relaxed">
-              Autêntica culinária mexicana com alma, arte e sabor. Uma experiência gastronômica única.
-            </p>
 
-            {/* Digital Presence Button */}
-            <div className="flex gap-4 mt-6">
-              <button
-                onClick={() => setIsDigitalPresenceOpen(true)}
-                className="px-5 py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white text-xs tracking-[0.15em] uppercase transition-all duration-300 shadow-[0_0_15px_rgba(251,146,60,0.3)] hover:shadow-[0_0_20px_rgba(251,146,60,0.5)] flex items-center gap-2"
-              >
-                <MapPin className="w-4 h-4" />
-                <span>Plataformas Digitais</span>
-              </button>
+  return (
+    <footer className="bg-[#050505] pt-20 pb-12 border-t border-white/5">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="flex flex-col md:flex-row justify-start items-start gap-16 lg:gap-32 mb-16">
+          {/* Brand Identity */}
+          <div className="max-w-md">
+            <div className="flex flex-col">
+              <h2 className="font-serif text-3xl text-white tracking-tight">EL CHICANO</h2>
+              <span className="text-brand-accent text-xs tracking-[0.4em] uppercase font-bold mt-1">Pocket</span>
+            </div>
+            <p className="mt-6 text-gray-500 text-sm font-light leading-relaxed">
+              Autêntica culinária mexicana com alma, arte e sabor. <br className="hidden md:block" />
+              Uma experiência gastronômica única onde cada detalhe conta uma história.
+            </p>
+            <div className="flex items-center gap-4 mt-8">
+              <a href="https://instagram.com/elchicanopocket" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-gray-500 hover:bg-brand-accent hover:text-brand-base transition-all duration-300">
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a href="#" className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-gray-500 hover:bg-brand-accent hover:text-brand-base transition-all duration-300">
+                <Facebook className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
-          {/* Links */}
-          <div>
-            <h4 className="text-white text-sm tracking-[0.2em] uppercase mb-6">Menu</h4>
-            <ul className="space-y-3">
-              {['Entradas', 'Tacos', 'Pratos Principais', 'Sobremesas', 'Drinks', 'Carta de Vinhos'].map((item) => (
-                <li key={item}>
-                  <a href="#menu" className="text-neutral-500 hover:text-amber-400 text-sm transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Links 2 */}
-          <div>
-            <h4 className="text-white text-sm tracking-[0.2em] uppercase mb-6">El Chicano</h4>
-            <ul className="space-y-3">
-              {['Sobre Nós', 'Reservas', 'Eventos Privados', 'Música ao Vivo', 'Trabalhe Conosco', 'Contato'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-neutral-500 hover:text-amber-400 text-sm transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-white text-sm tracking-[0.2em] uppercase mb-6">Contato</h4>
-            <ul className="space-y-4">
-              <li>
-                <p className="text-neutral-400 text-xs uppercase tracking-wider mb-2">Centro - Florianópolis</p>
-                <div className="flex items-start gap-3 mb-2">
-                  <MapPin className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-neutral-500 text-sm">
-                    Rua das Palmeiras, 123<br />
-                    Centro, Florianópolis - SC
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                  <a href="tel:+5548999326792" className="text-neutral-500 hover:text-amber-400 text-sm transition-colors">
-                    (48) 99932-6792
-                  </a>
-                </div>
-              </li>
-              <li className="pt-3 border-t border-neutral-800">
-                <p className="text-neutral-400 text-xs uppercase tracking-wider mb-2">Laguna</p>
-                <div className="flex items-start gap-3 mb-2">
-                  <MapPin className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-neutral-500 text-sm">
-                    R. Joana Mussi<br />
-                    Laguna - SC, 88790-000
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 mb-2">
-                  <Phone className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                  <a href="tel:+5548999095712" className="text-neutral-500 hover:text-amber-400 text-sm transition-colors">
-                    (48) 99909-5712
-                  </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                  <a href="tel:+5548997887816" className="text-neutral-500 hover:text-amber-400 text-sm transition-colors">
-                    (48) 9978-7816 (WhatsApp)
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-center gap-3 pt-3 border-t border-neutral-800">
-                <Mail className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                <a href="mailto:elchicanoficial@gmail.com" className="text-neutral-500 hover:text-amber-400 text-sm transition-colors">
-                  elchicanoficial@gmail.com
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
-                <span className="text-neutral-500 text-sm">
-                  Ter - Qui: 18h - 00h<br />
-                  Sex - Sáb: 18h - 02h<br />
-                  Dom: 12h - 22h
-                </span>
-              </li>
-            </ul>
+          {/* Minimal Links */}
+          <div className="flex flex-col sm:flex-row gap-12 sm:gap-24">
+            <div>
+              <h4 className="text-brand-accent text-[10px] tracking-[0.3em] uppercase font-black mb-6">Links Rápidos</h4>
+              <ul className="space-y-3">
+                {[
+                  { name: 'Início', href: '#top' },
+                  { name: 'Sobre', href: '#about' },
+                  { name: 'Menu', href: '#menu' },
+                  { name: 'Unidades', href: '#locations' },
+                  { name: 'Contato', href: '#contact' }
+                ].map((link) => (
+                  <li key={link.name}>
+                    <a href={link.href} className="text-gray-500 hover:text-white flex items-center gap-2 group transition-colors text-xs font-light">
+                      <ChevronRight className="w-2.5 h-2.5 opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-brand-accent" />
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-brand-accent text-[10px] tracking-[0.3em] uppercase font-black mb-6">Plataformas</h4>
+              <button 
+                onClick={() => setIsDigitalPresenceOpen(true)}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 text-white text-[10px] tracking-widest uppercase font-bold hover:bg-white hover:text-black transition-all duration-300"
+              >
+                <MapPin className="w-3 h-3" />
+                Links Úteis
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Footer */}
-        <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-neutral-600 text-xs">
-            © 2024 El Chicano Pocket. Todos os direitos reservados.
-          </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-neutral-600 hover:text-neutral-400 text-xs transition-colors">
-              Política de Privacidade
-            </a>
-            <a href="#" className="text-neutral-600 hover:text-neutral-400 text-xs transition-colors">
-              Termos de Uso
-            </a>
+        {/* Bottom Bar & Developer Credit */}
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <p className="text-gray-600 text-[9px] tracking-widest font-medium uppercase">
+              © 2024 EL CHICANO POCKET. TODOS OS DIREITOS RESERVADOS.
+            </p>
+            <p className="text-gray-800 text-[9px] tracking-[0.4em] uppercase hidden md:block">
+              Mexican Soul
+            </p>
+          </div>
+
+          <a 
+            href="https://www.instagram.com/henriquehtz/?hl=pt-br" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group flex items-center gap-4 px-6 py-3 bg-white/[0.03] border border-white/5 hover:border-brand-accent/30 rounded-2xl transition-all duration-500 hover:bg-white/[0.05]"
+          >
+            <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-brand-accent transition-colors duration-500">
+              <img 
+                src="/images/foto de perfil.jpg" 
+                alt="Henrique Hintz" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-gray-500 text-[9px] tracking-widest uppercase font-bold group-hover:text-brand-accent transition-colors">Desenvolvedor</span>
+              <span className="text-white text-xs font-serif tracking-wide">Created by Henrique Hintz</span>
+              <span className="text-brand-accent text-[10px] tracking-wider font-bold mt-0.5">@henriquehtz</span>
+            </div>
+          </a>
+
+          <div className="flex items-center gap-6 group">
+            <div className="h-px w-12 bg-white/5 group-hover:w-16 group-hover:bg-brand-accent/30 transition-all duration-500 hidden md:block" />
+            <p className="text-gray-700 group-hover:text-gray-400 transition-colors text-[9px] tracking-[0.4em] uppercase">
+              Florianópolis | Laguna
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Digital Presence Modal */}
       <DigitalPresenceModal
         isOpen={isDigitalPresenceOpen}
         onClose={() => setIsDigitalPresenceOpen(false)}

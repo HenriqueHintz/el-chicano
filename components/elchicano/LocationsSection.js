@@ -16,10 +16,10 @@ const locations = [
     whatsapp: 'https://api.whatsapp.com/send?phone=5548999326792',
     coordinates: [-27.5872762, -48.5433644],
     hours: [
-      'Ter - Qui: 18h - 00h',
-      'Sex - Sáb: 18h - 02h',
-      'Dom: 12h - 22h',
-      'Seg: Fechado'
+      'Terça à Quinta: 18h - 00h',
+      'Sexta e Sábado: 18h - 02h',
+      'Domingo: 12h - 22h',
+      'Segunda: Fechado'
     ],
     googleMaps: 'https://www.google.com/maps/place/El+Chicano+Pocket/@-27.5872762,-48.5433644,15z/data=!4m6!3m5!1s0x952739d6ba408363:0x34ef4b90b468f567!8m2!3d-27.5872762!4d-48.5433644!16s%2Fg%2F11sdy_1gy_',
     image: '/images/locations/floripa-interior.jpg',
@@ -57,10 +57,10 @@ const locations = [
     whatsapp: 'https://api.whatsapp.com/send?phone=5548997887816&text=Olá, gostaria de fazer uma reserva no El Chicano Pocket Laguna',
     coordinates: [-28.4974191, -48.7565431],
     hours: [
-      'Ter - Qui: 18h - 00h',
-      'Sex - Sáb: 18h - 02h',
-      'Dom: 12h - 22h',
-      'Seg: Fechado'
+      'Terça à Quinta: 18h - 00h',
+      'Sexta e Sábado: 18h - 02h',
+      'Domingo: 12h - 22h',
+      'Segunda: Fechado'
     ],
     googleMaps: 'https://www.google.com/maps/search/R.+Joana+Mussi,+Laguna,+SC,+88790-000',
     image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070',
@@ -77,7 +77,7 @@ const locations = [
   }
 ];
 
-function LocationCard({ location, isActive, onClick, onOpenPresence, index }) {
+function LocationCard({ location, index }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -87,119 +87,53 @@ function LocationCard({ location, isActive, onClick, onOpenPresence, index }) {
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      onClick={onClick}
-      className={`group cursor-pointer transition-all duration-300 ${isActive ? 'ring-2 ring-amber-600' : ''
-        }`}
+      className="group flex flex-col bg-[#080808] border border-white/5 rounded-3xl overflow-hidden hover:border-brand-accent/20 transition-all duration-500 shadow-2xl"
     >
-      {/* Image */}
-      <div className="relative aspect-[16/10] overflow-hidden">
+      {/* Minimalist Image Header */}
+      <div className="relative h-64 sm:h-72 w-full overflow-hidden shrink-0">
         <img
           src={location.image}
           alt={location.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-        {/* Badge */}
-        <div className="absolute top-4 right-4 px-3 py-1 bg-amber-600 text-white text-xs tracking-wider uppercase">
-          {location.id}
-        </div>
+        
+      </div>
 
-        {/* Title Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          <h3 className="text-2xl font-serif text-white mb-2">{location.name}</h3>
-          <p className="text-white/80 text-sm flex items-center gap-2">
-            <MapPin className="w-4 h-4" />
+
+      {/* Content Body */}
+      <div className="p-6 sm:p-8 flex flex-col flex-grow">
+        <div className="mb-6">
+          <h3 className="text-2xl md:text-3xl font-serif text-white mb-2">{location.name}</h3>
+          <p className="text-gray-400 font-light flex items-center gap-2 text-sm md:text-base">
+            <MapPin className="w-4 h-4 text-brand-accent shrink-0" />
             {location.address}
           </p>
         </div>
-      </div>
 
-      {/* Info */}
-      <div className="bg-neutral-900 p-6 space-y-4">
-        <div className="space-y-3 text-sm">
-          <div className="flex items-start gap-3 text-neutral-400">
-            <Phone className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
-            <a href={`tel:${location.phone}`} className="hover:text-amber-400 transition-colors">
-              {location.phone}
-            </a>
-          </div>
-
-          <div className="flex items-start gap-3 text-neutral-400">
-            <Clock className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
-            <div>
-              {location.hours.map((hour, i) => (
-                <p key={i}>{hour}</p>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Features - Only for Centro */}
-        {location.features && (
-          <div className="pt-4 border-t border-neutral-800">
-            <h4 className="text-xs uppercase tracking-wider text-neutral-500 mb-3">Destaques</h4>
-            <div className="grid grid-cols-2 gap-2">
-              {location.features.map((feature, i) => (
-                <div key={i} className="flex items-center gap-2 text-xs text-neutral-400">
-                  <feature.icon className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
-                  <span>{feature.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Services - Only for Centro */}
-        {location.services && (
-          <div className="pt-4 border-t border-neutral-800">
-            <h4 className="text-xs uppercase tracking-wider text-neutral-500 mb-3">Serviços</h4>
-            <div className="flex flex-wrap gap-2">
-              {location.services.slice(0, 6).map((service, i) => (
-                <span key={i} className="px-2 py-1 bg-neutral-800 text-neutral-400 text-xs rounded">
-                  {service}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Actions */}
-        <div className="flex gap-2 pt-4 border-t border-neutral-800">
+        {/* Minimalist Ghost Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3 mt-auto pt-6 border-t border-white/5">
           <a
             href={location.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-green-600 hover:bg-green-700 text-white text-xs tracking-wider uppercase transition-all"
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 border border-emerald-500/30 bg-emerald-500/5 hover:bg-emerald-500 text-emerald-500 hover:text-white rounded-xl transition-all duration-300 text-[11px] tracking-wider uppercase font-bold"
             onClick={(e) => e.stopPropagation()}
           >
             <MessageCircle className="w-4 h-4" />
             WhatsApp
           </a>
-
           <a
             href={location.googleMaps}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-neutral-700 hover:border-amber-600 text-neutral-300 hover:text-amber-400 text-xs tracking-wider uppercase transition-all"
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 border border-white/10 hover:border-white/30 bg-white/5 hover:bg-white text-white hover:text-black rounded-xl transition-all duration-300 text-[11px] tracking-wider uppercase font-bold"
             onClick={(e) => e.stopPropagation()}
           >
             <Navigation className="w-4 h-4" />
             Rotas
           </a>
         </div>
-
-        {/* Digital Presence Action */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onOpenPresence();
-          }}
-          className="w-full flex items-center justify-center gap-2 px-4 py-3 mt-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white text-xs tracking-wider uppercase transition-all shadow-lg shadow-orange-600/20"
-        >
-          <MapPin className="w-4 h-4" />
-          Plataformas Digitais
-        </button>
       </div>
     </motion.div>
   );
@@ -212,7 +146,7 @@ export default function LocationsSection() {
   const isHeaderInView = useInView(headerRef, { once: true });
 
   return (
-    <section id="locations" className="py-24 md:py-32 bg-black">
+    <section id="locations" className="py-24 md:py-32 bg-brand-base">
       <div className="container mx-auto px-4 md:px-8">
         {/* Header */}
         <motion.div
@@ -222,11 +156,12 @@ export default function LocationsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-amber-500 text-sm tracking-[0.3em] uppercase">Nossas Unidades</span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-serif text-white">
+          <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-bold">Nossas Unidades</span>
+          <h2 className="mt-4 text-4xl md:text-5xl lg:text-7xl font-serif text-brand-soft">
             Onde nos encontrar
           </h2>
-          <p className="mt-6 text-neutral-400 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-brand-accent mx-auto mt-6 shadow-glow-accent"></div>
+          <p className="mt-8 text-brand-light/70 max-w-2xl mx-auto font-light text-lg">
             Duas unidades para você curtir a melhor experiência mexicana em Santa Catarina
           </p>
         </motion.div>
@@ -237,9 +172,6 @@ export default function LocationsSection() {
             <LocationCard
               key={location.id}
               location={location}
-              isActive={activeLocation.id === location.id}
-              onClick={() => setActiveLocation(location)}
-              onOpenPresence={() => setIsPresenceOpen(true)}
               index={index}
             />
           ))}

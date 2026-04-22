@@ -22,11 +22,11 @@ export default function CTASection() {
           backgroundImage: `url('https://images.unsplash.com/photo-1582169296194-e4d644c48063?q=80&w=2084')`,
         }}
       >
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-brand-base/80" />
       </div>
 
       {/* Decorative Border */}
-      <div className="absolute inset-8 border border-amber-600/20 pointer-events-none" />
+      <div className="absolute inset-8 border border-brand-accent/20 pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
@@ -35,21 +35,27 @@ export default function CTASection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-amber-400 text-sm tracking-[0.3em] uppercase">
+          <span className="inline-block px-6 py-2 bg-brand-accent rounded-full text-brand-base text-xs md:text-sm tracking-[0.2em] uppercase font-black shadow-glow-accent">
             Buscando realizar algo especial?
           </span>
           
-          <h2 className="mt-6 text-3xl md:text-5xl lg:text-6xl font-serif text-white leading-tight max-w-4xl mx-auto">
-            Pronto para viver uma experiência 
-            <span className="text-amber-400"> autêntica mexicana?</span>
+          <h2 className="mt-8 text-4xl md:text-5xl lg:text-7xl font-serif text-brand-soft leading-tight max-w-4xl mx-auto">
+            Pronto para viver uma <br className="hidden md:block" />
+            <span className="text-brand-accent underline decoration-brand-accent/30 underline-offset-8">experiência mexicana?</span>
           </h2>
-
-          <p className="mt-8 text-neutral-300 text-lg max-w-2xl mx-auto">
-            ✨ <strong className="text-white">Reserve agora</strong> e garanta sua mesa em uma experiência gastronômica autêntica<br />
-            🎉 <strong className="text-orange-400">Eventos especiais</strong> • Aniversários • Corporativos • Celebrações<br />
-            📞 <strong className="text-green-400">Atendimento personalizado</strong> para tornar seu momento inesquecível
-          </p>
-
+ 
+          <div className="mt-8 space-y-4">
+            <p className="text-brand-light/90 text-lg md:text-xl font-light">
+              Reserve agora e garanta sua mesa em uma experiência gastronômica autêntica
+            </p>
+            <p className="text-white text-sm md:text-base tracking-wider uppercase font-medium">
+              Eventos especiais • Aniversários • Corporativos • Celebrações
+            </p>
+            <p className="text-brand-light/70 text-sm md:text-base italic">
+              Atendimento personalizado para tornar seu momento inesquecível
+            </p>
+          </div>
+ 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -60,20 +66,20 @@ export default function CTASection() {
               href="https://api.whatsapp.com/send?phone=5548999326792&text=Olá, gostaria de fazer uma reserva no El Chicano Pocket"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-green-600 hover:bg-green-700 text-white text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:shadow-lg hover:shadow-green-600/30 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black rounded-lg"
-              aria-label="Reserve agora via WhatsApp - atendimento imediato"
+              className="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs md:text-sm tracking-[0.2em] uppercase font-bold transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-600/30 rounded-xl"
+              aria-label="Reserve agora via WhatsApp"
             >
-              <MessageCircle className="w-5 h-5 transition-transform group-hover:scale-110" aria-hidden="true" />
-              🚀 Reserve Agora (WhatsApp)
+              <MessageCircle className="w-5 h-5" />
+              Reserve Agora
             </a>
             
             <a
               href="tel:+5548999326792"
-              className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/30 hover:border-amber-400 text-white text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-black rounded-lg"
-              aria-label="Ligue agora para fazer sua reserva - atendimento imediato"
+              className="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-white hover:bg-white/90 text-black text-xs md:text-sm tracking-[0.2em] uppercase font-bold transition-all duration-300 rounded-xl shadow-xl"
+              aria-label="Ligar agora"
             >
-              <Phone className="w-5 h-5 transition-transform group-hover:scale-110" aria-hidden="true" />
-              📞 Ligar Agora
+              <Phone className="w-5 h-5" />
+              Ligar Agora
             </a>
           </motion.div>
         </motion.div>

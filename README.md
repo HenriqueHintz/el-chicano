@@ -1,19 +1,19 @@
 # El Chicano Pocket - Restaurante Mexicano 🌮
-> **Authentic Mexican culinary experience with a modern digital interface.**
+> **Experience digital premium da autêntica culinária mexicana.**
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-FF69B4?style=for-the-badge&logo=framer)](https://www.framer.com/motion/)
-[![Status](https://img.shields.io/badge/Status-Production--Ready-green?style=for-the-badge)](https://github.com/HenriqueHintz/el-chicano)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-white?style=for-the-badge&logo=vercel)](https://vercel.com/)
 
 ---
 
-### 🇧🇷 Sobre o Projeto
-O **El Chicano Pocket** é uma aplicação web de alta performance desenvolvida para proporcionar uma experiência digital premium aos clientes da rede de restaurantes mexicanos. Focado em conversão e experiência do usuário (UX), o projeto combina design vibrante com otimização técnica de ponta, incluindo animações fluidas e integração direta com canais de atendimento.
+## 🇧🇷 Sobre o Projeto
+O **El Chicano Pocket** é uma landing page de alto padrão desenvolvida para elevar a presença digital de uma rede de restaurantes mexicanos. O foco principal é a **conversão estratégica** e a **experiência do usuário (UX)**, utilizando as tecnologias mais modernas do ecossistema React para garantir performance, SEO impecável e uma interface que reflete a alma e a arte da marca.
 
-### 🇺🇸 About the Project
-**El Chicano Pocket** is a high-performance web application designed to provide a premium digital experience for customers of the Mexican restaurant chain. Focused on conversion and user experience (UX), the project combines vibrant design with cutting-edge technical optimization, including fluid animations and direct integration with service channels.
+## 🇺🇸 About the Project
+**El Chicano Pocket** is a high-end landing page built to elevate the digital presence of a Mexican restaurant chain. The main focus is on **strategic conversion** and **user experience (UX)**, leveraging the latest React ecosystem technologies to ensure high performance, impeccable SEO, and an interface that reflects the soul and art of the brand.
 
 ---
 
@@ -21,31 +21,31 @@ O **El Chicano Pocket** é uma aplicação web de alta performance desenvolvida 
 
 | Tecnologia | Finalidade | Purpose |
 | :--- | :--- | :--- |
-| **Next.js 14** | Framework Fullstack (App Router) | Fullstack Framework (App Router) |
+| **Next.js 14** | Framework Fullstack com App Router | Fullstack Framework with App Router |
 | **React 18** | UI Reativa e Componentizada | Reactive and Componentized UI |
-| **Tailwind CSS** | Estilização Utilitária e Responsividade | Utility Styling and Responsiveness |
-| **Framer Motion** | Micro-interações e Animações | Micro-interactions and Animations |
-| **Lucide React** | Iconografia Moderna e Leve | Modern and Lightweight Iconography |
-| **Critters** | Otimização de CSS Crítico | Critical CSS Optimization |
+| **Tailwind CSS** | Design System utilitário e responsivo | Utility-first Design System & Responsiveness |
+| **Framer Motion** | Animações fluidas e micro-interações | Fluid animations and micro-interactions |
+| **Lucide React** | Iconografia moderna e otimizada | Modern and optimized iconography |
+| **Critters** | Otimização de CSS Crítico para Performance | Critical CSS Optimization for Performance |
 
 ---
 
 ## ✨ Funcionalidades | Features
 
-- **🎯 Conversão Estratégica**: Call-to-actions (CTAs) flutuantes e botões de ação rápida para pedidos via WhatsApp.
-- **🍱 Cardápio Interativo**: Seções detalhadas com categorias de pratos e experiências gastronômicas.
-- **📍 Multi-unidades**: Gerenciamento e exibição dinâmica de múltiplas localizações (Florianópolis e Laguna).
-- **📱 Mobile-First Dynamic**: Interface otimizada para dispositivos móveis com ações rápidas na parte inferior.
-- **🚀 Performance & SEO**: Configuração avançada de metadados, sitemap dinâmico e carregamento otimizado de fontes/CSS.
-- **📊 Analytics & Trust**: Integração com Google Analytics e indicadores de prova social (depoimentos e avaliações).
+- **🚀 Performance Extrema**: Otimização de fontes, imagens e CSS crítico para carregamento instantâneo.
+- **📱 Mobile-First Experience**: Barra de ações rápidas exclusiva para dispositivos móveis, facilitando reservas e acesso ao menu.
+- **🎨 UI/UX Premium**: Design minimalista e elegante com transições suaves e tipografia refinada.
+- **📍 Gestão de Unidades**: Layout dinâmico para múltiplas localizações com integração direta ao Google Maps.
+- **💬 Conversão via WhatsApp**: CTAs estrategicamente posicionados para atendimento imediato.
+- **🔍 SEO Advanced**: Metadados dinâmicos e estrutura semântica otimizada para buscadores.
 
 ---
 
 ## 🚀 Setup & Instalação
 
 ### Requisitos | Prerequisites
-- [Node.js](https://nodejs.org/) (v18+)
-- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
+- Node.js (v18+)
+- npm ou yarn
 
 ### Instalação | Installation
 1. Clone o repositório:
@@ -56,17 +56,10 @@ O **El Chicano Pocket** é uma aplicação web de alta performance desenvolvida 
    ```bash
    npm install
    ```
-3. Configure o arquivo `.env` (baseado no `.env.example`).
-4. Inicie o servidor de desenvolvimento:
+3. Inicie o servidor de desenvolvimento:
    ```bash
    npm run dev
    ```
-
-### Build & Produção
-```bash
-npm run build
-npm start
-```
 
 ---
 
@@ -75,24 +68,21 @@ npm start
 ```text
 ├── app/               # Next.js App Router (Páginas e Meta-arquivos)
 ├── components/        # Componentes UI reutilizáveis
-│   ├── elchicano/     # Seções específicas do negócio (Hero, Menu, etc.)
-│   └── cart/          # Lógica e UI do carrinho de pedidos
-├── contexts/          # Context API para gerenciamento de estado global
-├── lib/               # Utilitários, configurações e funções auxiliares
-├── public/            # Assets estáticos (Imagens, Vídeos, Ícones)
-├── styles/            # Configurações globais de CSS
-└── next.config.js     # Configurações do framework Next.js
+│   └── elchicano/     # Seções específicas (Hero, Menu, Footer, etc.)
+├── lib/               # Utilitários, siteData e lógica de apoio
+├── public/            # Assets estáticos (Imagens de alta qualidade)
+└── tailwind.config.js # Customização do Design System
 ```
 
 ---
 
 ## 📈 Status do Projeto
 **Status: Professional / Production-Ready**  
-O projeto está em fase de manutenção e otimização contínua, servindo como a presença digital oficial da marca.
+Este projeto representa o estado da arte em landing pages para o setor gastronômico, focado em resultados reais de negócio.
 
 ---
 
-### Author
+## Author
 **Henrique Hintz**
 
 GitHub: [https://github.com/HenriqueHintz](https://github.com/HenriqueHintz)  

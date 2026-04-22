@@ -2,11 +2,8 @@ import { Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { siteData } from '@/lib/siteData'
 import WhatsAppButton from '@/components/WhatsAppButton'
+import ScrollToTopButton from '@/components/ScrollToTopButton'
 import Analytics, { GTMBody } from '@/components/Analytics'
-import { CartProvider } from '@/contexts/CartContext'
-import CartDrawer from '@/components/cart/CartDrawer'
-import CartButton from '@/components/cart/CartButton'
-import DigitalPresenceButton from '@/components/elchicano/DigitalPresenceButton'
 import LoadingScreen from '@/components/LoadingScreen'
 
 const playfair = Playfair_Display({
@@ -148,13 +145,9 @@ export default function RootLayout({ children }) {
                     Pular para conteúdo principal
                 </a>
 
-                <CartProvider>
                     {children}
+                    <ScrollToTopButton />
                     <WhatsAppButton />
-                    <CartButton />
-                    <CartDrawer />
-                    <DigitalPresenceButton />
-                </CartProvider>
             </body>
         </html>
     )
