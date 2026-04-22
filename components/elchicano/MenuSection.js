@@ -4,7 +4,7 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import Image from 'next/image';
-import { Utensils, X, ShoppingBag, Globe, ZoomIn } from 'lucide-react';
+import { Utensils, X, ShoppingBag, Globe, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
 import { menuCategories, menuItems } from '@/lib/siteData';
 
 export default function MenuSection() {
@@ -12,6 +12,7 @@ export default function MenuSection() {
 
     const [selectedImage, setSelectedImage] = useState(null);
     const ref = useRef(null);
+    const tabsContainerRef = useRef(null);
     const itemsContainerRef = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -29,6 +30,16 @@ export default function MenuSection() {
     const filteredItems = useMemo(() => {
         return menuItems[activeCategory] || [];
     }, [activeCategory]);
+
+    const scrollTabs = (direction) => {
+        if (tabsContainerRef.current) {
+            const scrollAmount = 200;
+            tabsContainerRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     return (
         <section id="menu" className="py-24 bg-brand-base" ref={ref}>
@@ -48,7 +59,28 @@ export default function MenuSection() {
                 </motion.div>
 
                 {/* Category Tabs */}
-                <div className="flex overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 md:flex-wrap md:justify-center md:pb-0 md:mx-0 md:px-0 gap-2 md:gap-3 mb-12 md:mb-16">
+                <div className="relative group/filters">
+                    {/* Navigation Arrows (Mobile Only) */}
+                    <button 
+                        onClick={() => scrollTabs('left')}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-brand-base/80 backdrop-blur-md p-1.5 rounded-r-lg border-y border-r border-brand-light/10 text-brand-soft md:hidden shadow-lg shadow-black/20"
+                        aria-label="Rolar filtros para esquerda"
+                    >
+                        <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    
+                    <button 
+                        onClick={() => scrollTabs('right')}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-brand-base/80 backdrop-blur-md p-1.5 rounded-l-lg border-y border-l border-brand-light/10 text-brand-soft md:hidden shadow-lg shadow-black/20"
+                        aria-label="Rolar filtros para direita"
+                    >
+                        <ChevronRight className="w-5 h-5" />
+                    </button>
+
+                    <div 
+                        ref={tabsContainerRef}
+                        className="flex overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 md:flex-wrap md:justify-center md:pb-0 md:mx-0 md:px-0 gap-2 md:gap-3 mb-12 md:mb-16 scroll-smooth"
+                    >
                     {menuCategories.map((category, index) => (
                         <React.Fragment key={category.id}>
                             {category.id === 'burritos' && <div className="w-full h-0 m-0 p-0 hidden md:block"></div>}
@@ -78,6 +110,7 @@ export default function MenuSection() {
                         </motion.button>
                         </React.Fragment>
                     ))}
+                    </div>
                 </div>
 
                 {/* Menu Items Grid */}
