@@ -4,7 +4,7 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import Image from 'next/image';
-import { Utensils, X, ShoppingBag, Globe, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Utensils, X, ShoppingBag, Globe, ZoomIn } from 'lucide-react';
 import { menuCategories, menuItems } from '@/lib/siteData';
 
 export default function MenuSection() {
@@ -14,14 +14,6 @@ export default function MenuSection() {
     const ref = useRef(null);
     const itemsContainerRef = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.1 });
-    const categoriesRef = useRef(null);
-
-    const scrollCategories = (direction) => {
-        if (categoriesRef.current) {
-            const scrollAmount = direction === 'left' ? -200 : 200;
-            categoriesRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-    };
 
     // Close modal on ESC key press
     useEffect(() => {
@@ -56,80 +48,36 @@ export default function MenuSection() {
                 </motion.div>
 
                 {/* Category Tabs */}
-                <div className="relative mb-16 px-4 md:px-0">
-                    {/* Mobile Arrows */}
-                    <button 
-                        onClick={() => scrollCategories('left')}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-brand-base/80 text-brand-soft md:hidden"
-                        aria-label="Anterior"
-                    >
-                        <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    
-                    <button 
-                        onClick={() => scrollCategories('right')}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-brand-base/80 text-brand-soft md:hidden"
-                        aria-label="Próximo"
-                    >
-                        <ChevronRight className="w-5 h-5" />
-                    </button>
-
-                    <div 
-                        ref={categoriesRef}
-                        className="flex md:flex-wrap md:justify-center gap-2 md:gap-3 overflow-x-auto scrollbar-hide pb-2 md:pb-0"
-                        style={{ 
-                            display: 'grid', 
-                            gridAutoFlow: 'column', 
-                            gridTemplateRows: 'repeat(2, minmax(0, 1fr))',
-                            gap: '8px'
-                        }}
-                    >
-                        {/* Adjust Grid for Desktop */}
-                        <style jsx>{`
-                            @media (min-width: 768px) {
-                                div {
-                                    display: flex !important;
-                                    flex-wrap: wrap !important;
-                                    justify-content: center !important;
-                                }
-                            }
-                            .scrollbar-hide::-webkit-scrollbar {
-                                display: none;
-                            }
-                            .scrollbar-hide {
-                                -ms-overflow-style: none;
-                                scrollbar-width: none;
-                            }
-                        `}</style>
-
-                        {menuCategories.map((category, index) => (
+                <div className="flex overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 md:flex-wrap md:justify-center md:pb-0 md:mx-0 md:px-0 gap-2 md:gap-3 mb-12 md:mb-16">
+                    {menuCategories.map((category, index) => (
+                        <React.Fragment key={category.id}>
+                            {category.id === 'burritos' && <div className="w-full h-0 m-0 p-0 hidden md:block"></div>}
                             <motion.button
-                                key={category.id}
                                 initial={{ opacity: 0, scale: 0.9 }}
-                                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                                transition={{ duration: 0.3, delay: index * 0.05 }}
-                                onClick={() => {
-                                    setActiveCategory(category.id);
-                                    if (itemsContainerRef.current) {
-                                        const yOffset = -120;
-                                        const y = itemsContainerRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                                        window.scrollTo({ top: y, behavior: 'smooth' });
-                                    }
-                                }}
-                                className={`
-                                    whitespace-nowrap px-3.5 py-2 rounded-full text-[10px] md:text-sm font-bold uppercase tracking-tight md:tracking-wider transition-all duration-300 border h-fit
-                                    ${activeCategory === category.id
-                                        ? 'bg-brand-accent border-brand-accent text-white shadow-glow-accent scale-105'
-                                        : 'bg-brand-light/5 border-brand-light/15 text-brand-light/60 hover:border-brand-light/30 hover:text-brand-soft hover:bg-brand-light/10'
-                                    }
-                                `}
-                            >
-                                <span className="relative z-10 flex items-center gap-2">
-                                    {category.name}
-                                </span>
-                            </motion.button>
-                        ))}
-                    </div>
+                            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                            transition={{ duration: 0.3, delay: index * 0.05 }}
+                            onClick={() => {
+                                setActiveCategory(category.id);
+                                if (itemsContainerRef.current) {
+                                    const yOffset = -120;
+                                    const y = itemsContainerRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                                    window.scrollTo({ top: y, behavior: 'smooth' });
+                                }
+                            }}
+                            className={`
+                                relative px-4 py-2 sm:px-6 sm:py-3 rounded-full text-[10px] sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 border flex-shrink-0
+                                ${activeCategory === category.id
+                                    ? 'bg-brand-accent border-brand-accent text-white shadow-glow-accent scale-105'
+                                    : 'bg-brand-light/5 border-brand-light/15 text-brand-light/60 hover:border-brand-light/30 hover:text-brand-soft hover:bg-brand-light/10'
+                                }
+                            `}
+                        >
+                            <span className="relative z-10 flex items-center gap-2">
+                                {category.name}
+                            </span>
+                        </motion.button>
+                        </React.Fragment>
+                    ))}
                 </div>
 
                 {/* Menu Items Grid */}

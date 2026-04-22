@@ -247,6 +247,16 @@ a {
   }
 }
 
+/* Utility Classes */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Mobile-specific enhancements */
 @media (max-width: 768px) {
 
