@@ -61,25 +61,31 @@ export default function MenuSection() {
                 {/* Category Tabs */}
                 <div className="relative group/filters">
                     {/* Navigation Arrows (Mobile Only) */}
-                    <button 
+                    <motion.button 
+                        whileTap={{ scale: 0.9 }}
                         onClick={() => scrollTabs('left')}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-brand-base/80 backdrop-blur-md p-1.5 rounded-r-lg border-y border-r border-brand-light/10 text-brand-soft md:hidden shadow-lg shadow-black/20"
+                        className="absolute left-0 top-1/2 -translate-y-1/2 z-30 bg-brand-accent/90 backdrop-blur-md p-2 rounded-r-xl text-white md:hidden shadow-lg shadow-brand-accent/20 border-y border-r border-white/20"
                         aria-label="Rolar filtros para esquerda"
                     >
                         <ChevronLeft className="w-5 h-5" />
-                    </button>
+                    </motion.button>
                     
-                    <button 
+                    <motion.button 
+                        whileTap={{ scale: 0.9 }}
                         onClick={() => scrollTabs('right')}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-brand-base/80 backdrop-blur-md p-1.5 rounded-l-lg border-y border-l border-brand-light/10 text-brand-soft md:hidden shadow-lg shadow-black/20"
+                        className="absolute right-0 top-1/2 -translate-y-1/2 z-30 bg-brand-accent/90 backdrop-blur-md p-2 rounded-l-xl text-white md:hidden shadow-lg shadow-brand-accent/20 border-y border-l border-white/20"
                         aria-label="Rolar filtros para direita"
                     >
                         <ChevronRight className="w-5 h-5" />
-                    </button>
+                    </motion.button>
+
+                    {/* Fading Edges (Mobile Only) */}
+                    <div className="absolute left-0 top-0 bottom-4 w-12 bg-gradient-to-r from-brand-base to-transparent z-10 md:hidden pointer-events-none"></div>
+                    <div className="absolute right-0 top-0 bottom-4 w-12 bg-gradient-to-l from-brand-base to-transparent z-10 md:hidden pointer-events-none"></div>
 
                     <div 
                         ref={tabsContainerRef}
-                        className="flex overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 md:flex-wrap md:justify-center md:pb-0 md:mx-0 md:px-0 gap-2 md:gap-3 mb-12 md:mb-16 scroll-smooth"
+                        className="flex overflow-x-auto scrollbar-hide pb-4 -mx-4 px-10 md:flex-wrap md:justify-center md:pb-0 md:mx-0 md:px-0 gap-2 md:gap-3 mb-12 md:mb-16 scroll-smooth"
                     >
                     {menuCategories.map((category, index) => (
                         <React.Fragment key={category.id}>
@@ -100,7 +106,7 @@ export default function MenuSection() {
                                 relative px-4 py-2 sm:px-6 sm:py-3 rounded-full text-[10px] sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 border flex-shrink-0
                                 ${activeCategory === category.id
                                     ? 'bg-brand-accent border-brand-accent text-white shadow-glow-accent scale-105'
-                                    : 'bg-brand-light/5 border-brand-light/15 text-brand-light/60 hover:border-brand-light/30 hover:text-brand-soft hover:bg-brand-light/10'
+                                    : 'bg-brand-light/5 border-brand-light/20 text-brand-light/80 hover:border-brand-light/30 hover:text-brand-soft hover:bg-brand-light/10'
                                 }
                             `}
                         >
