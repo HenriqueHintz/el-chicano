@@ -117,7 +117,7 @@ export default function MenuSection() {
                                     }
                                 }}
                                 className={`
-                                    whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] md:text-sm font-bold uppercase tracking-wider transition-all duration-300 border h-fit
+                                    whitespace-nowrap px-3.5 py-2 rounded-full text-[10px] md:text-sm font-bold uppercase tracking-tight md:tracking-wider transition-all duration-300 border h-fit
                                     ${activeCategory === category.id
                                         ? 'bg-brand-accent border-brand-accent text-white shadow-glow-accent scale-105'
                                         : 'bg-brand-light/5 border-brand-light/15 text-brand-light/60 hover:border-brand-light/30 hover:text-brand-soft hover:bg-brand-light/10'
